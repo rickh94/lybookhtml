@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      font-family: 'Crimson Text', serif;
+    }
+
+    body {
+      width: 8.5in;
+      margin-inline: auto;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+
+    @page {
+      size: letter;
+    }
+
+    img {
+      width: 7.5in !important;
+    }
+
+    @media print {
+      .break {
+        page-break-after: always;
+      }
+
+      .no-break {
+        page-break-after: avoid;
+      }
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: bold;
+      padding: 0;
+      margin: 0;
+    }
+
+    p {
+      padding: 0;
+      margin: 0;
+    }
+
+    ul,
+    ol,
+    dl {
+      padding-block: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 0;
+      margin: 0;
+    }
+
+    section {
+      margin-block: 1rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      text-align: left;
+    }
+
+    h4 {
+      text-align: left;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TODO: title page -->
+  {%- for chapter in chapters %}
+  <!-- CHAPTER HEADER -->
+  {%- if let Some(h) = chapter.header %}
+  <header>
+    <h1>{{ h }}</h1>
+  </header>
+  {%- endif %}
+
+  {%- for exercise in chapter.exercises %}
+  <!-- EXERCISE HEADER -->
+  <section>
+    <h2>{{ exercise.title }}</h2>
+    <hgroup>
+      {%- if let Some(st) = exercise.subtitle %}
+      <h3>{{ st }}</h3>
+      {% endif %}
+      {%- if let Some(i) = exercise.instructions %}
+      <p>{{ i }}</p>
+      {%- endif %}
+    </hgroup>
+    <!-- MUSIC GROUPS -->
+    {%- for group in exercise.groups %}
+    {%- if let Some(h) = group.heading %}
+    <h3 class="no-break">{{ h }}</h3>
+    {%- endif %}
+    {%- if let Some(sh) = group.subheading %}
+    <p class="no-break">{{ sh }}</p>
+    {%- endif %}
+    {%- for music in group.music %}
+    <div class="no-break">
+      {%- if let Some(i) = music.instructions %}
+      <p><em>{{ i }}</em></p>
+      {%- endif %}
+      <lilypondfile>./{{exercise.title}}/{{group.id}}-{{music.id}}.ly</lilypondfile>
+    </div>
+    {%- endfor %}
+    {%- endfor %}
+  </section>
+  {%- endfor %}
+  {%- endfor %}
+</body>
+
+</html>
