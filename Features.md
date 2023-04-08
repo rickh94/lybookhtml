@@ -3,8 +3,8 @@
 [x] Save html file to path from information about the book
 [x] render ly files from information about the book
 [x] save ly files from information about the book
-[ ] read information from yaml file
-[ ] allow specification of config file and output dirs for the generated files 
+[x] read information from yaml file
+[x] allow specification of config file and output dirs for the generated files 
 
 # Medium
 [ ] allow the use of a custom template instead of the compiled in template (maybe?), or customizing the template
@@ -12,6 +12,9 @@
 
 
 # Advanced
-[ ] update an existing project from an updated config file without overwriting the lilypond files
-[ ] run the lilypond book command with options or generate an appropriate shell script
-[ ] run the lilypond book command with file watching and a server (maybe auto-reloading?)
+[x] update an existing project from an updated config file without overwriting the lilypond files
+[x] generate build.sh
+[x] generate watch.sh
+
+# Usability
+[ ] generate example yaml file, write explainer

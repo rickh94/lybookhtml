@@ -1,0 +1,75 @@
+title: "Sevcik, Op. 2 Book 1"
+chapters: 
+  - header: "Section I"
+    exercises:
+      - title: "No. 1"
+        subtitle: "How to hold the bow"
+        instructions: "Practice the following example with very little bow \
+                       length. 1. In the Middle, 2. At the tip, 3. At the Frog. \
+                       During the pauses, allow the bow to rest on the string\
+                       and count the beats of the bar out loud."
+        groups:
+          - id: 1
+            music:
+              - id: 1
+      - title: "No. 2"
+        subtitle: "Movements of the bow"
+        instructions: "Play the 18 examples below in the following six ways"
+        groups:
+          - id: 1
+            heading: Variants
+            music:
+              - id: 1
+                instructions: "Whole Bow"
+              - id: 2
+                instructions: "Half Bow"
+              - id: 3
+                instructions: "In the middle"
+          - id: 2
+            heading: "Examples"
+            music:
+              - id: 4
+      - title: "No. 3"
+        subtitle: "Rhythmic exericses and dividing the bow length"
+        instructions: "Examples in whole notes with 57 variants. Practice the \
+                       whole example with each variant."
+        groups:
+          - id: 1
+            heading: "Examples"
+            music:
+              - id: 1
+          - id: 2
+            heading: "Variants"
+            subheading: "Rest the bow on the string during the pauses"
+            music:
+              - id: 1
+                instructions: "Whole Bow"
+              - id: 2
+                instructions: "Half Bow"
+              - id: 3
+                instructions: "Half and Whole Bows"
+              - id: 4
+                instructions: "In the middle"
+              - id: 5
+                instructions: "One-third of the bow"
+      - title: "No. 4"
+        subtitle: "Study in half-notes with 75  variants"
+        groups:
+          - id: 1
+            heading: "Examples"
+            music:
+              - id: 1
+          - id: 2
+            heading: "Variants"
+            music:
+              - id: 1
+                instructions: "Whole bow"
+              - id: 2
+                instructions: "Half Bow"
+              - id: 3
+                instructions: "Whole and half bow"
+              - id: 4
+                instructions: "In the middle"
+              - id: 5
+                instructions: ""
+

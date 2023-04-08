@@ -93,6 +93,12 @@
 </head>
 
 <body>
+  <header>
+    <h1>{{ title }}</h1>
+    {% if let Some(c) = composer %}
+    <h1>{{ c }}</h1>
+    {% endif %}
+  </header>
 
   <!-- TODO: title page -->
   {%- for chapter in chapters %}
@@ -128,7 +134,9 @@
       {%- if let Some(i) = music.instructions %}
       <p><em>{{ i }}</em></p>
       {%- endif %}
-      <lilypondfile>./{{exercise.title}}/{{group.id}}-{{music.id}}.ly</lilypondfile>
+      <lilypondfile>
+        ./{{ exercise.title|slug }}/{{ exercise.title|slug }}-{{group.id}}-{{music.id}}.ly
+      </lilypondfile>
     </div>
     {%- endfor %}
     {%- endfor %}
