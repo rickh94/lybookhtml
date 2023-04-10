@@ -36,9 +36,9 @@ BOOK=`which lilypond-book`
 LILYPOND=`which lilypond`
 
 if [ ! -z $ENTR ]; then
-	ls **/*.{html,ly} | $ENTR -s \"$BOOK --process=\\\"$LILYPOND -dresolution=300\\\" index.html -o output\" 
+	fd -E output/ '.html|.ly' | $ENTR -s \"$BOOK --process=\\\"$LILYPOND -dresolution=300\\\" index.html -o output\" 
 elif [ ! -z $FSWATCH ]; then
-	$FSWATCH **/*.{html,ly} | xargs -n1 -I{} $BOOK --process=\"$LILYPOND -dresolution=300\" index.html -o output
+	$FSWATCH -e 'output/' **/*.{html,ly} | xargs -I{} $BOOK --process=\"$LILYPOND -dresolution=300\" index.html -o output
 fi
 ";
 
@@ -61,7 +61,13 @@ struct Exercise {
     title: String,
     subtitle: Option<String>,
     instructions: Option<String>,
+    #[serde(default = "break_before_default")]
+    break_before: bool,
     groups: Vec<Group>,
+}
+
+fn break_before_default() -> bool {
+    false
 }
 
 #[derive(Deserialize)]

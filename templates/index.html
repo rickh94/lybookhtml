@@ -19,6 +19,7 @@
     body {
       width: 8.5in;
       margin-inline: auto;
+      padding-inline: 10px;
       overflow-x: hidden;
       overflow-y: scroll;
     }
@@ -32,12 +33,25 @@
     }
 
     @media print {
+      body {
+        padding-inline: 0;
+      }
+
       .break {
-        page-break-after: always;
+        break-after: always;
       }
 
       .no-break {
-        page-break-after: avoid;
+        break-inside: avoid;
+      }
+
+      .no-break-after {
+        break-after: avoid;
+      }
+
+      .title-page {
+        height: 100% !important;
+        page-break-after: always;
       }
     }
 
@@ -89,10 +103,41 @@
       text-align: left;
       margin-top: 1rem;
     }
+
+    .title-page {
+      height: 100vh;
+    }
+
+    .title-page header {
+      margin-top: 200px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .title-page h2,
+    .title-page h1 {
+      text-align: left;
+      margin-left: 150px;
+    }
+
+    .title-page hr {
+      margin: 0 20px 20px 100px;
+      width: auto;
+    }
   </style>
 </head>
 
 <body>
+  <div class="title-page">
+
+    <header>
+      <hr>
+      <h1>{{ title }}</h1>
+      {% if let Some(c) = composer %}
+      <h2>{{ c }}</h2>
+      {% endif %}
+    </header>
+  </div>
   <header>
     <h1>{{ title }}</h1>
     {% if let Some(c) = composer %}
@@ -110,10 +155,13 @@
   {%- endif %}
 
   {%- for exercise in chapter.exercises %}
+  {%- if exercise.break_before %}
+  <div class="break"></div>
+  {% endif %}
   <!-- EXERCISE HEADER -->
   <section>
     <h2>{{ exercise.title }}</h2>
-    <hgroup>
+    <hgroup class="no-break-after">
       {%- if let Some(st) = exercise.subtitle %}
       <h3>{{ st }}</h3>
       {% endif %}
